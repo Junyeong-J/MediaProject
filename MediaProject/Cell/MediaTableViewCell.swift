@@ -64,24 +64,25 @@ class MediaTableViewCell: UITableViewCell {
         }
         
         posterView.snp.makeConstraints { make in
-            make.size.equalTo(deviceWidth - 40)
+            make.width.equalTo(deviceWidth - 40)
+            make.height.equalTo(deviceWidth - 80)
             make.top.equalTo(genreLabel.snp.bottom).offset(5)
             make.leading.equalTo(contentView).inset(20)
         }
         
         posterImageView.snp.makeConstraints { make in
-            make.height.equalTo((deviceWidth - 40) * 0.6)
+            make.height.equalTo((deviceWidth - 80) * 0.6)
             make.top.leading.trailing.equalTo(posterView)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(posterImageView.snp.bottom).offset(10)
+            make.top.equalTo(posterImageView.snp.bottom).offset(20)
             make.leading.trailing.equalTo(posterView).inset(20)
         }
         
         subTitleLabel.snp.makeConstraints { make in
             make.leading.trailing.equalTo(posterView).inset(20)
-            make.top.equalTo(titleLabel.snp.bottom).offset(2)
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
         }
         
         detailLabel.snp.makeConstraints { make in
@@ -92,25 +93,34 @@ class MediaTableViewCell: UITableViewCell {
         
         arrowImageView.snp.makeConstraints { make in
             make.bottom.equalTo(posterView).inset(10)
-            make.size.equalTo(30)
+            make.size.equalTo(20)
             make.trailing.equalTo(posterView).inset(20)
         }
         
         lineView.snp.makeConstraints { make in
             make.leading.trailing.equalTo(posterView).inset(20)
             make.height.equalTo(1)
-            make.bottom.equalTo(arrowImageView.snp.top).offset(-5)
+            make.bottom.equalTo(arrowImageView.snp.top).offset(-10)
         }
     }
     
     func configureUI() {
         dateLabel.setUILabel("", textAlignment: .left, color: .darkGray, backgroundColor: .clear, font: .systemFont(ofSize: 13), cornerRadius: 0)
         
-        genreLabel.backgroundColor = .blue
+        genreLabel.setUILabel("", textAlignment: .left, color: .black, backgroundColor: .clear, font: .systemFont(ofSize: 15), cornerRadius: 0)
         
-        posterView.backgroundColor = .cyan
+        posterView.backgroundColor = .white
+        posterView.backgroundColor = .white
+        posterView.layer.cornerRadius = 10
+        posterView.layer.shadowColor = UIColor.black.cgColor
+        posterView.layer.masksToBounds = false
+        posterView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        posterView.layer.shadowRadius = 5
+        posterView.layer.shadowOpacity = 0.3
         
         posterImageView.setImageViewUI(contentMode: .scaleToFill, cornerRadius: 10)
+        posterImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        posterImageView.layer.masksToBounds = true
         
         titleLabel.setUILabel("", textAlignment: .left, color: .black, backgroundColor: .clear, font: .boldSystemFont(ofSize: 17), cornerRadius: 0)
         
@@ -118,14 +128,22 @@ class MediaTableViewCell: UITableViewCell {
         
         lineView.backgroundColor = .black
         
-        detailLabel.backgroundColor = .green
+        detailLabel.setUILabel("자세히 보기", textAlignment: .left, color: .darkGray, backgroundColor: .clear, font: .boldSystemFont(ofSize: 14), cornerRadius: 0)
         
-        arrowImageView.backgroundColor = .blue
+        arrowImageView.image = UIImage(systemName: "chevron.right")
     }
     
     func configureData(data: TMDBResult) {
         
-        dateLabel.text = data.releaseDate
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "yyyy-MM-dd"
+        let changeFormat = DateFormatter()
+        changeFormat.dateFormat = "MM/dd/yyyy"
+        if let date = dateFormat.date(from: data.releaseDate) {
+            dateLabel.text = changeFormat.string(from: date)
+        } else {
+            dateLabel.text = nil
+        }
         
         let posterBaseURL = APIURL.posterBaseURL
         let posterURLString = posterBaseURL + data.posterPath
@@ -135,6 +153,8 @@ class MediaTableViewCell: UITableViewCell {
         titleLabel.text = data.originalTitle
         
         subTitleLabel.text = data.overview
+        
+        genreLabel.text = "투표 평균: \(data.voteAverage)"
         
     }
 

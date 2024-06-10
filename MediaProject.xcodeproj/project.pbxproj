@@ -13,7 +13,6 @@
 		720710082C173FC700DEB707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 720710072C173FC700DEB707 /* Assets.xcassets */; };
 		7207100B2C173FC700DEB707 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 7207100A2C173FC700DEB707 /* Base */; };
 		720710152C17402800DEB707 /* MediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720710122C17402800DEB707 /* MediaTableViewCell.swift */; };
-		720710162C17402800DEB707 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720710132C17402800DEB707 /* MovieTableViewCell.swift */; };
 		720710192C17403B00DEB707 /* MediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720710182C17403B00DEB707 /* MediaViewController.swift */; };
 		7207101F2C17404700DEB707 /* Button+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7207101A2C17404700DEB707 /* Button+Extension.swift */; };
 		720710202C17404700DEB707 /* Label+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7207101B2C17404700DEB707 /* Label+Extension.swift */; };
@@ -25,6 +24,7 @@
 		7207102E2C17406A00DEB707 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7207102D2C17406A00DEB707 /* SnapKit */; };
 		720710312C17407400DEB707 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 720710302C17407400DEB707 /* Alamofire */; };
 		720710352C1740ED00DEB707 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 720710342C1740ED00DEB707 /* .gitignore */; };
+		720710372C17415D00DEB707 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720710362C17415D00DEB707 /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,6 @@
 		7207100A2C173FC700DEB707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7207100C2C173FC700DEB707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		720710122C17402800DEB707 /* MediaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaTableViewCell.swift; sourceTree = "<group>"; };
-		720710132C17402800DEB707 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		720710182C17403B00DEB707 /* MediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewController.swift; sourceTree = "<group>"; };
 		7207101A2C17404700DEB707 /* Button+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Button+Extension.swift"; sourceTree = "<group>"; };
 		7207101B2C17404700DEB707 /* Label+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Label+Extension.swift"; sourceTree = "<group>"; };
@@ -45,6 +44,7 @@
 		720710232C17404D00DEB707 /* ReuseIdentifierProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReuseIdentifierProtocol.swift; sourceTree = "<group>"; };
 		720710262C17405600DEB707 /* TMDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDB.swift; sourceTree = "<group>"; };
 		720710342C1740ED00DEB707 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		720710362C17415D00DEB707 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +92,7 @@
 				720710072C173FC700DEB707 /* Assets.xcassets */,
 				720710092C173FC700DEB707 /* LaunchScreen.storyboard */,
 				7207100C2C173FC700DEB707 /* Info.plist */,
+				720710362C17415D00DEB707 /* APIKey.swift */,
 			);
 			path = MediaProject;
 			sourceTree = "<group>";
@@ -100,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				720710122C17402800DEB707 /* MediaTableViewCell.swift */,
-				720710132C17402800DEB707 /* MovieTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -226,12 +226,12 @@
 				720710202C17404700DEB707 /* Label+Extension.swift in Sources */,
 				7207101F2C17404700DEB707 /* Button+Extension.swift in Sources */,
 				720710282C17405600DEB707 /* TMDB.swift in Sources */,
-				720710162C17402800DEB707 /* MovieTableViewCell.swift in Sources */,
 				720710192C17403B00DEB707 /* MediaViewController.swift in Sources */,
 				720710032C173FC500DEB707 /* ViewController.swift in Sources */,
 				720710252C17404D00DEB707 /* ReuseIdentifierProtocol.swift in Sources */,
 				72070FFF2C173FC500DEB707 /* AppDelegate.swift in Sources */,
 				720710152C17402800DEB707 /* MediaTableViewCell.swift in Sources */,
+				720710372C17415D00DEB707 /* APIKey.swift in Sources */,
 				720710012C173FC500DEB707 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

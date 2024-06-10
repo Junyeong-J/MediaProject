@@ -11,6 +11,8 @@ import Alamofire
 
 class MediaViewController: UIViewController {
     
+    let deviceWidth = UIScreen.main.bounds.size.width
+    
     let tableView = UITableView()
     var listData: [TMDBResult] = []
     
@@ -18,7 +20,7 @@ class MediaViewController: UIViewController {
         super.viewDidLoad()
         callRequest()
         configureTableView()
-        
+        navigationUI()
         configureHierarchy()
         configureLayout()
         configureUI()
@@ -30,15 +32,13 @@ extension MediaViewController {
     
     func configureTableView() {
         view.addSubview(tableView)
-        tableView.backgroundColor = .blue
-        
         tableView.snp.makeConstraints { make in
             make.top.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
         }
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 500
+        tableView.rowHeight = deviceWidth
         tableView.register(MediaTableViewCell.self, forCellReuseIdentifier: MediaTableViewCell.identifier)
     }
     
@@ -47,6 +47,18 @@ extension MediaViewController {
     }
     
     func configureLayout(){
+        
+    }
+    
+    func navigationUI() {
+        
+        let left = UIBarButtonItem(image: UIImage(systemName: "list.bullet")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(listButtonClicked))
+        left.tintColor = .black
+        self.navigationItem.leftBarButtonItem = left
+        
+        let right = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(searchButtonClikced))
+        right.tintColor = .black
+        self.navigationItem.rightBarButtonItem = right
         
     }
     
@@ -60,7 +72,6 @@ extension MediaViewController {
             .responseDecodable(of: TMDBResponse.self) { response in
                 switch response.result {
                 case .success(let value):
-//                    print(value.results)
                     self.listData = value.results
                     self.tableView.reloadData()
                 case .failure(let error):
@@ -69,12 +80,22 @@ extension MediaViewController {
             }
     }
     
+    @objc func listButtonClicked() {
+        
+        
+    }
+    
+    
+    @objc func searchButtonClikced() {
+        
+        
+    }
+    
     
 }
 
 extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(listData.count)
         return listData.count
     }
     
