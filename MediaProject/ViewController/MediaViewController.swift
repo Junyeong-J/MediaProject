@@ -21,8 +21,6 @@ class MediaViewController: UIViewController {
         callRequest()
         configureTableView()
         navigationUI()
-        configureHierarchy()
-        configureLayout()
         configureUI()
     }
     
@@ -40,14 +38,6 @@ extension MediaViewController {
         tableView.delegate = self
         tableView.rowHeight = deviceWidth
         tableView.register(MediaTableViewCell.self, forCellReuseIdentifier: MediaTableViewCell.identifier)
-    }
-    
-    func configureHierarchy(){
-        
-    }
-    
-    func configureLayout(){
-        
     }
     
     func navigationUI() {
