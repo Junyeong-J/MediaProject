@@ -110,7 +110,6 @@ class MediaTableViewCell: UITableViewCell {
         genreLabel.setUILabel("", textAlignment: .left, color: .black, backgroundColor: .clear, font: .systemFont(ofSize: 15), cornerRadius: 0)
         
         posterView.backgroundColor = .white
-        posterView.backgroundColor = .white
         posterView.layer.cornerRadius = 10
         posterView.layer.shadowColor = UIColor.black.cgColor
         posterView.layer.masksToBounds = false

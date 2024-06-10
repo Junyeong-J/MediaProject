@@ -95,4 +95,10 @@ extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nv = DetailViewController()
+        nv.listData = listData[indexPath.row]
+        navigationController?.pushViewController(nv, animated: true)
+    }
+    
 }

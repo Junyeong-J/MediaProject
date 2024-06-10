@@ -41,3 +41,33 @@ struct TMDBResult: Decodable {
         case voteCount = "vote_count"
     }
 }
+
+
+struct TMDBDetailResponse: Decodable {
+    let id: Int
+    let cast: [CastMember]
+}
+
+struct CastMember: Decodable {
+    let adult: Bool
+    let gender: Int
+    let id: Int
+    let knownForDepartment: String
+    let name: String
+    let originalName: String
+    let popularity: Double
+    let profilePath: String?
+    let castID: Int
+    let character: String
+    let creditID: String
+    let order: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case adult, gender, id, name, popularity, character, order
+        case knownForDepartment = "known_for_department"
+        case originalName = "original_name"
+        case profilePath = "profile_path"
+        case castID = "cast_id"
+        case creditID = "credit_id"
+    }
+}
