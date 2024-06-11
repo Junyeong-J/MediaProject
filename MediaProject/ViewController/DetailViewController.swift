@@ -10,6 +10,7 @@ import Alamofire
 import Kingfisher
 import SnapKit
 
+
 class DetailViewController: UIViewController {
     
     var listData: TMDBResult? {
@@ -18,7 +19,6 @@ class DetailViewController: UIViewController {
         }
     }
     var castData: [CastMember] = []
-    
     let overTableView = UITableView()
     
     let mainImageView = UIImageView()
@@ -35,8 +35,6 @@ class DetailViewController: UIViewController {
         configureUI()
         configureTableView()
         configureData()
-        
-        
     }
     
     
@@ -89,7 +87,7 @@ extension DetailViewController {
         
         overTableView.dataSource = self
         overTableView.delegate = self
-        overTableView.rowHeight = 100
+
         overTableView.register(OverViewTableViewCell.self, forCellReuseIdentifier: OverViewTableViewCell.identifier)
         
         overTableView.register(CastTableViewCell.self, forCellReuseIdentifier: CastTableViewCell.identifier)
@@ -135,6 +133,16 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         return section == 0 ? 1 : castData.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if indexPath[0] == 0 {
+            
+            return 80
+        }else {
+            return 100
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.identifier, for: indexPath) as! OverViewTableViewCell
@@ -171,3 +179,4 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         return 35
     }
 }
+

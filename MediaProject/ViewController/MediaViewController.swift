@@ -57,7 +57,22 @@ extension MediaViewController {
     }
     
     func callRequest() {
+        // API Instance.request()
         let url = APIURL.TMDBURL
+        AF.request(url)
+            .responseDecodable(of: TMDBResponse.self) { response in
+                switch response.result {
+                case .success(let value):
+                    self.listData = value.results
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
+    func call(url: String, responseDecodable: Decodable) {
+        // API Instance.request()
         AF.request(url)
             .responseDecodable(of: TMDBResponse.self) { response in
                 switch response.result {

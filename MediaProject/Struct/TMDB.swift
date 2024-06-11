@@ -40,6 +40,18 @@ struct TMDBResult: Decodable {
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
     }
+    
+    var changeDate: String? {
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "yyyy-MM-dd"
+        let changeFormat = DateFormatter()
+        changeFormat.dateFormat = "MM/dd/yyyy"
+        if let date = dateFormat.date(from: releaseDate) {
+            return changeFormat.string(from: date)
+        } else {
+            return nil
+        }
+    }
 }
 
 

@@ -133,16 +133,8 @@ class MediaTableViewCell: UITableViewCell {
     }
     
     func configureData(data: TMDBResult) {
-        
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "yyyy-MM-dd"
-        let changeFormat = DateFormatter()
-        changeFormat.dateFormat = "MM/dd/yyyy"
-        if let date = dateFormat.date(from: data.releaseDate) {
-            dateLabel.text = changeFormat.string(from: date)
-        } else {
-            dateLabel.text = nil
-        }
+        // Swift DateFormatter Expansive
+        dateLabel.text = data.changeDate
         
         let posterBaseURL = APIURL.posterBaseURL
         let posterURLString = posterBaseURL + data.posterPath
