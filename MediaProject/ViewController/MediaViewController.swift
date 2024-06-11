@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Alamofire
+import Toast
 
 class MediaViewController: UIViewController {
     
@@ -66,13 +67,13 @@ extension MediaViewController {
                     self.listData = value.results
                     self.tableView.reloadData()
                 case .failure(let error):
-                    print(error)
+                    self.view.makeToast(error.localizedDescription)
                 }
             }
     }
     
     func call(url: String, responseDecodable: Decodable) {
-        // API Instance.request()
+        // API Instance.request()......
         AF.request(url)
             .responseDecodable(of: TMDBResponse.self) { response in
                 switch response.result {

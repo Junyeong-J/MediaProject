@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 import Kingfisher
 import SnapKit
-
+import Toast
 
 class DetailViewController: UIViewController {
     
@@ -103,7 +103,7 @@ extension DetailViewController {
                     self.castData = value.cast
                     self.overTableView.reloadData()
                 case .failure(let error):
-                    print(error)
+                    self.view.makeToast(error.localizedDescription)
                 }
             }
     }

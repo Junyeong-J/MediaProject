@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Alamofire
+import Toast
 
 class MovieViewController: UIViewController {
     
@@ -108,7 +109,7 @@ extension MovieViewController {
                     self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
                 }
             case .failure(let error):
-                print(error)
+                self.view.makeToast(error.localizedDescription)
             }
         }
     }
