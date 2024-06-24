@@ -83,3 +83,47 @@ struct CastMember: Decodable {
         case creditID = "credit_id"
     }
 }
+
+struct SimilarResponse: Decodable {
+    let page: Int
+    let results: [TMDBMovie]
+    let totalPages: Int
+    let totalResults: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case page
+        case results
+        case totalPages = "total_pages"
+        case totalResults = "total_results"
+    }
+}
+
+struct TMDBMovie: Decodable {
+    let posterPath: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case posterPath = "poster_path"
+    }
+}
+
+struct RecommendResponse: Decodable {
+    let page: Int
+    let results: [TMDBMovieData]
+    let totalPages: Int
+    let totalResults: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case page
+        case results
+        case totalPages = "total_pages"
+        case totalResults = "total_results"
+    }
+}
+
+struct TMDBMovieData: Decodable {
+    let posterPath: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case posterPath = "poster_path"
+    }
+}

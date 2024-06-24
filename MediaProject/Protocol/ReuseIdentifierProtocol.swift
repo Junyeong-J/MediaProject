@@ -26,8 +26,10 @@ extension UITableViewCell: ReuseIdentifierProtocol {
     }
 }
 
-extension UICollectionViewCell: ReuseIdentifierProtocol {
+extension UICollectionReusableView: ReuseIdentifierProtocol {
     static var identifier: String {
         String(describing: self)
     }
 }
+
+

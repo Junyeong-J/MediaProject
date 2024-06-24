@@ -28,7 +28,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "출연/제작"
+        makeNavigationUI()
         
         configureHierarchy()
         configureLayout()
@@ -41,6 +41,13 @@ class DetailViewController: UIViewController {
 }
 
 extension DetailViewController {
+    
+    func makeNavigationUI() {
+        navigationItem.title = "출연/제작"
+        
+        let similar = UIBarButtonItem(title: "관련된 영화", style: .plain, target: self, action: #selector(similarButtonClicked))
+        navigationItem.rightBarButtonItem = similar
+    }
     
     func configureHierarchy() {
         view.addSubview(mainImageView)
@@ -121,6 +128,14 @@ extension DetailViewController {
         let posterURLString = posterBaseURL + listData.posterPath
         let posterurl = URL(string: posterURLString)
         posterImageVIew.kf.setImage(with: posterurl)
+    }
+    
+    @objc func similarButtonClicked() {
+        guard let listData = listData else {return}
+        let vc = RecommendViewController()
+        vc.id = listData.id
+        vc.naviTitle = listData.title!
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
