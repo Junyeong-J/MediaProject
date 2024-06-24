@@ -115,6 +115,7 @@ extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
         let nv = DetailViewController()
         nv.listData = listData[indexPath.row]
         navigationController?.pushViewController(nv, animated: true)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
 }
