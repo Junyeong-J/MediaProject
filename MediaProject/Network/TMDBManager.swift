@@ -13,36 +13,21 @@ class TMDBManager {
     static let shared = TMDBManager()
     private init() {}
     
-    func getTMDBSimilar(id: Int, completionHandler: @escaping (Result<SimilarResponse, NetworkError>) -> Void) {
-        let url = "\(APIURL.TMDBMovieSimilarURL1)\(id)\(APIURL.TMDBMovieSimilarURL2)"
-        let params = [
-            "language" : "ko"
-        ]
-        
-        let headers: HTTPHeaders = ["AUTHORIZATION" : APIKey.TMDBAuthorization]
-        AF.request(url, parameters: params, headers: headers).responseDecodable(of: SimilarResponse.self) { response in
+    func trendingFetch<T: Decodable>(api: TMDBRequest, model: T.Type, completionHandler: @escaping (T?, TMDBError?) -> Void) {
+        AF.request(api.endpoint, method: api.method,
+                   parameters: api.parameter,
+                   encoding: URLEncoding(destination: .queryString),
+                   headers: api.header)
+        .validate(statusCode: 200..<500)
+        .responseDecodable(of: T.self) { response in
             switch response.result{
             case .success(let value):
-                completionHandler(.success(value))
-            case .failure(_):
-                completionHandler(.failure(.networkError))
-            }
-        }
-    }
-    
-    func getTMDBRecommend(id: Int, completionHandler: @escaping (Result<RecommendResponse, NetworkError>) -> Void) {
-        let url = "\(APIURL.TMDBMovieSimilarURL1)\(id)\(APIURL.TMDBMovieRecommendURL)"
-        let params = [
-            "language" : "ko"
-        ]
-        
-        let headers: HTTPHeaders = ["AUTHORIZATION" : APIKey.TMDBAuthorization]
-        AF.request(url, parameters: params, headers: headers).responseDecodable(of: RecommendResponse.self) { response in
-            switch response.result{
-            case .success(let value):
-                completionHandler(.success(value))
-            case .failure(_):
-                completionHandler(.failure(.networkError))
+                print("success")
+                print(value)
+                completionHandler(value, nil)
+            case .failure(let error):
+                completionHandler(nil, .failedRequest)
+                print(error)
             }
         }
     }

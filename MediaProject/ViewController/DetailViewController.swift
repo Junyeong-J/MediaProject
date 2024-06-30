@@ -132,9 +132,9 @@ extension DetailViewController {
     
     @objc func similarButtonClicked() {
         guard let listData = listData else {return}
-        let vc = RecommendViewController()
+        let vc = RecommendMovieViewController()
         vc.id = listData.id
-        vc.naviTitle = listData.title!
+//        vc.naviTitle = listData.title!
         navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -7,7 +7,10 @@
 
 import Foundation
 
-enum NetworkError: Error {
-    case networkError
-    case custonError(message: String)
+enum TMDBError: Error {
+    
+    case failedRequest
+    case invalidResponse
+    case invalidData
+    
 }

@@ -8,60 +8,31 @@
 import UIKit
 import Kingfisher
 
-class RecommendCollectionViewCell: UICollectionViewCell {
+class RecommendCollectionViewCell: BaseCollectionViewCell {
     
     let movieImageView = UIImageView()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureHierarchy()
-        configureLayout()
-        configureUI()
-    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func configureHierarchy() {
+    override func configureHierarchy() {
         contentView.addSubview(movieImageView)
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         movieImageView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }
     }
     
-    func configureUI() {
+    override func configureUI() {
+        movieImageView.backgroundColor = .systemMint
         movieImageView.setImageViewUI(contentMode: .scaleAspectFill, cornerRadius: 5)
         movieImageView.layer.masksToBounds = true
     }
     
     
-    func configureSimilarData(data: TMDBMovie) {
+    func configureData(data: URL?) {
         
-        let posterBaseURL = APIURL.posterBaseURL
-        if let profilePath = data.posterPath{
-            let url = URL(string: posterBaseURL + profilePath)
-
-            movieImageView.kf.setImage(with: url)
-        } else {
-            movieImageView.image = UIImage(systemName: "star")
-        }
-
-    }
-    
-    func configureRecommendData(data: TMDBMovieData) {
-        
-        let posterBaseURL = APIURL.posterBaseURL
-        if let profilePath = data.posterPath{
-            let url = URL(string: posterBaseURL + profilePath)
-
-            movieImageView.kf.setImage(with: url)
-        } else {
-            movieImageView.image = UIImage(systemName: "star")
-        }
+        movieImageView.kf.setImage(with: data)
 
     }
     
