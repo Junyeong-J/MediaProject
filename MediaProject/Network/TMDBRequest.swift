@@ -14,6 +14,7 @@ enum TMDBRequest {
     case similarMovie(id: Int)
     case recommendMovie(id: Int)
     case moviePoster(id: Int)
+    case moiveVideo(id: Int)
     
     var baseURL: String {
         return APIURL.TMDBBaseURL
@@ -29,6 +30,8 @@ enum TMDBRequest {
             return URL(string: baseURL + "\(id)\(APIURL.TMDBMovieRecommendEndPoint)")!
         case .moviePoster(let id):
             return URL(string: baseURL + "\(id)\(APIURL.TMDBMoviePosterEndPoint)")!
+        case .moiveVideo(let id):
+            return URL(string: baseURL + "\(id)\(APIURL.TMDBMovieVideoEndPoint)")!
         }
     }
     
@@ -48,6 +51,8 @@ enum TMDBRequest {
             return ["language": "ko-KR",
                     "query": query,
                     "page": page] as [String : Any]
+        case .moiveVideo:
+            return ["language": "en-US"]
         }
     }
 }

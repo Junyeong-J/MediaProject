@@ -41,6 +41,7 @@ final class MovieViewController: BaseViewController {
     
     override func configureHierarchy() {
         view.addSubview(searchBar)
+        view.addSubview(collectionView)
     }
     
     override func configureLayout() {
@@ -124,6 +125,12 @@ extension MovieViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath) as! MovieCollectionViewCell
         cell.configureData(data: list.results[indexPath.item])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = DetailWebViewController()
+        vc.id = list.results[indexPath.item].id
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

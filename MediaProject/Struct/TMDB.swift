@@ -127,3 +127,12 @@ struct TMDBMovieData: Decodable {
         case posterPath = "poster_path"
     }
 }
+
+struct TMDBMovieVideo: Decodable {
+    let id: Int
+    let results: [VideoData]
+}
+
+struct VideoData: Decodable {
+    let key: String
+}

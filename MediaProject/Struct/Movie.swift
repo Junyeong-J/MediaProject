@@ -17,4 +17,5 @@ struct Movie: Decodable {
 
 struct MovieData: Decodable {
     let poster_path: String?
+    let id: Int
 }
