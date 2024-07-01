@@ -9,9 +9,9 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class MovieCollectionViewCell: UICollectionViewCell {
+final class MovieCollectionViewCell: UICollectionViewCell {
     
-    let movieImageView = UIImageView()
+    private let movieImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

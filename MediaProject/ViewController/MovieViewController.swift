@@ -10,15 +10,15 @@ import SnapKit
 import Alamofire
 import Toast
 
-class MovieViewController: BaseViewController {
+final class MovieViewController: BaseViewController {
     
-    let searchBar = UISearchBar()
+    private let searchBar = UISearchBar()
     
-    var list = Movie(page: 0, results: [], total_pages: 0, total_results: 0)
-    var page = 1
+    private var list = Movie(page: 0, results: [], total_pages: 0, total_results: 0)
+    private var page = 1
     
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
-    static func collectionViewLayout() -> UICollectionViewLayout {
+    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+    static private func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width - 40
         layout.itemSize = CGSize(width: width/2, height: width/2)

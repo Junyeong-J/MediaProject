@@ -8,10 +8,9 @@
 import UIKit
 import Kingfisher
 
-class RecommendCollectionViewCell: BaseCollectionViewCell {
+final class RecommendCollectionViewCell: BaseCollectionViewCell {
     
-    let movieImageView = UIImageView()
-    
+    private let movieImageView = UIImageView()
     
     override func configureHierarchy() {
         contentView.addSubview(movieImageView)

@@ -7,9 +7,9 @@
 
 import UIKit
 
-class RecommendTableViewCell: BaseTableViewCell {
+final class RecommendTableViewCell: BaseTableViewCell {
     
-    let titleLabel = {
+    private let titleLabel = {
         let view = UILabel()
         view.font = .boldSystemFont(ofSize: 17)
         view.textColor = .black
@@ -18,7 +18,7 @@ class RecommendTableViewCell: BaseTableViewCell {
     
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
-    static func layout() -> UICollectionViewLayout {
+    static private  func layout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 120, height: 160)
         layout.minimumLineSpacing = 10

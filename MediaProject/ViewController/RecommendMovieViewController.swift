@@ -8,14 +8,14 @@
 import UIKit
 import SnapKit
 
-class RecommendMovieViewController: BaseViewController {
+final class RecommendMovieViewController: BaseViewController {
     
     var id: Int = 0
-    let titles: [String] = ["비슷한영화", "추천영화"]
-    var imageList: [[TMDBMovieData]] = [[TMDBMovieData(posterPath: "")],
+    private let titles: [String] = ["비슷한영화", "추천영화"]
+    private var imageList: [[TMDBMovieData]] = [[TMDBMovieData(posterPath: "")],
                                         [TMDBMovieData(posterPath: "")]]
     
-    lazy var tableView = {
+    private lazy var tableView = {
         let view = UITableView()
         view.delegate = self
         view.dataSource = self

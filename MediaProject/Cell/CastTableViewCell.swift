@@ -9,11 +9,11 @@ import UIKit
 import Kingfisher
 import SnapKit
 
-class CastTableViewCell: UITableViewCell {
+final class CastTableViewCell: UITableViewCell {
     
-    let castImageView = UIImageView()
-    let nameLabel = UILabel()
-    let characterLabel = UILabel()
+    private let castImageView = UIImageView()
+    private let nameLabel = UILabel()
+    private let characterLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

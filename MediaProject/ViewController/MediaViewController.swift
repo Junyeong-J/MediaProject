@@ -10,12 +10,12 @@ import SnapKit
 import Alamofire
 import Toast
 
-class MediaViewController: UIViewController {
+final class MediaViewController: UIViewController {
     
-    let deviceWidth = UIScreen.main.bounds.size.width
+    private let deviceWidth = UIScreen.main.bounds.size.width
     
-    let tableView = UITableView()
-    var listData: [TMDBResult] = []
+    private let tableView = UITableView()
+    private var listData: [TMDBResult] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

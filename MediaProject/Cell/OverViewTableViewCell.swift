@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 
-class OverViewTableViewCell: UITableViewCell {
+final class OverViewTableViewCell: UITableViewCell {
     
-    let overViewText = UILabel()
-    let moreButton = UIButton()
-    var height: Int?
+    private let overViewText = UILabel()
+    private let moreButton = UIButton()
+    private var height: Int?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

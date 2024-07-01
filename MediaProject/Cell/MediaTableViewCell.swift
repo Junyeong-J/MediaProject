@@ -9,19 +9,19 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class MediaTableViewCell: UITableViewCell {
+final class MediaTableViewCell: UITableViewCell {
     
-    let deviceWidth = UIScreen.main.bounds.size.width
+    private let deviceWidth = UIScreen.main.bounds.size.width
     
-    let dateLabel = UILabel()
-    let genreLabel = UILabel()
-    let posterView = UIView()
-    let posterImageView = UIImageView()
-    let titleLabel = UILabel()
-    let subTitleLabel = UILabel()
-    let lineView = UIView()
-    let detailLabel = UILabel()
-    let arrowImageView = UIImageView()
+    private let dateLabel = UILabel()
+    private let genreLabel = UILabel()
+    private let posterView = UIView()
+    private let posterImageView = UIImageView()
+    private let titleLabel = UILabel()
+    private let subTitleLabel = UILabel()
+    private let lineView = UIView()
+    private let detailLabel = UILabel()
+    private let arrowImageView = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

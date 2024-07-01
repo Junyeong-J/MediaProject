@@ -11,19 +11,19 @@ import Kingfisher
 import SnapKit
 import Toast
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     
     var listData: TMDBResult? {
         didSet {
             callRequest()
         }
     }
-    var castData: [CastMember] = []
-    let overTableView = UITableView()
+    private var castData: [CastMember] = []
+    private let overTableView = UITableView()
     
-    let mainImageView = UIImageView()
-    let titleLabel = UILabel()
-    let posterImageVIew = UIImageView()
+    private let mainImageView = UIImageView()
+    private let titleLabel = UILabel()
+    private let posterImageVIew = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
