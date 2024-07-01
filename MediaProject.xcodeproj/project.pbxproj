@@ -43,6 +43,7 @@
 		72154D082C31201700EEF679 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72154D072C31201700EEF679 /* BaseCollectionViewCell.swift */; };
 		72154D0A2C31230D00EEF679 /* TMDBRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72154D092C31230D00EEF679 /* TMDBRequest.swift */; };
 		72154D0F2C32F57A00EEF679 /* DetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72154D0E2C32F57A00EEF679 /* DetailWebViewController.swift */; };
+		72154D112C3313CF00EEF679 /* NasaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72154D102C3313CF00EEF679 /* NasaViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		72154D072C31201700EEF679 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		72154D092C31230D00EEF679 /* TMDBRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBRequest.swift; sourceTree = "<group>"; };
 		72154D0E2C32F57A00EEF679 /* DetailWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWebViewController.swift; sourceTree = "<group>"; };
+		72154D102C3313CF00EEF679 /* NasaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				720710482C18888F00DEB707 /* MovieViewController.swift */,
 				72154CFE2C311A8300EEF679 /* RecommendMovieViewController.swift */,
 				72154D0E2C32F57A00EEF679 /* DetailWebViewController.swift */,
+				72154D102C3313CF00EEF679 /* NasaViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				7207103B2C175DF700DEB707 /* OverViewTableViewCell.swift in Sources */,
 				7207104D2C18930300DEB707 /* Movie.swift in Sources */,
 				72154CC92C29B56C00EEF679 /* TabBarController.swift in Sources */,
+				72154D112C3313CF00EEF679 /* NasaViewController.swift in Sources */,
 				72154D0F2C32F57A00EEF679 /* DetailWebViewController.swift in Sources */,
 				720710392C17542600DEB707 /* DetailViewController.swift in Sources */,
 				72154CD52C29DF5100EEF679 /* CustomCollectionHeaderView.swift in Sources */,

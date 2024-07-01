@@ -23,7 +23,11 @@ final class TabBarController: UITabBarController {
         let nav2 = UINavigationController(rootViewController: movieVC)
         nav2.tabBarItem = UITabBarItem(title: "영화", image: UIImage(systemName: "person"), tag: 1)
         
-        setViewControllers([nav1, nav2], animated: true)
+        let nasaVC = NasaViewController()
+        let nav3 = UINavigationController(rootViewController: nasaVC)
+        nav3.tabBarItem = UITabBarItem(title: "나사", image: UIImage(systemName: "globe.central.south.asia.fill"), tag: 2)
+        
+        setViewControllers([nav1, nav2, nav3], animated: true)
     }
 
     
