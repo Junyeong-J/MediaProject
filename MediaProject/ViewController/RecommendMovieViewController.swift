@@ -26,8 +26,6 @@ class RecommendMovieViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("aaaaa: \(id)")
         callRequest()
     }
     

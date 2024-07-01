@@ -10,6 +10,7 @@ import Alamofire
 
 enum TMDBRequest {
     
+    case searchMoive(query: String, page: Int)
     case similarMovie(id: Int)
     case recommendMovie(id: Int)
     case moviePoster(id: Int)
@@ -20,6 +21,8 @@ enum TMDBRequest {
     
     var endpoint: URL {
         switch self {
+        case .searchMoive:
+            return URL(string: "\(APIURL.TMDBMovieURL)")!
         case .similarMovie(id: let id):
             return URL(string: baseURL + "\(id)\(APIURL.TMDBMovieSimilarEndPoint)")!
         case .recommendMovie(let id):
@@ -41,6 +44,10 @@ enum TMDBRequest {
         switch self {
         case .similarMovie, .recommendMovie, .moviePoster:
             return ["language": "ko-KR"]
+        case .searchMoive(let query, let page):
+            return ["language": "ko-KR",
+                    "query": query,
+                    "page": page] as [String : Any]
         }
     }
 }

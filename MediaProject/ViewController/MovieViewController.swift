@@ -10,11 +10,11 @@ import SnapKit
 import Alamofire
 import Toast
 
-class MovieViewController: UIViewController {
+class MovieViewController: BaseViewController {
     
     let searchBar = UISearchBar()
     
-    var list = Movie(page: 0, results: [], total_pages: 0)
+    var list = Movie(page: 0, results: [], total_pages: 0, total_results: 0)
     var page = 1
     
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
@@ -35,14 +35,29 @@ class MovieViewController: UIViewController {
         navigationUI()
         
         configureCollectionView()
-        configureHierarchy()
-        configureLayout()
-        configureUI()
         
         searchBar.delegate = self
     }
     
+    override func configureHierarchy() {
+        view.addSubview(searchBar)
+    }
     
+    override func configureLayout() {
+        searchBar.snp.makeConstraints { make in
+            make.top.trailing.leading.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(44)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(searchBar.snp.bottom)
+        }
+    }
+    
+    override func configureView() {
+        view.backgroundColor = .white
+    }
     
 }
 
@@ -61,56 +76,40 @@ extension MovieViewController {
         
     }
     
-    func configureHierarchy() {
-        view.addSubview(searchBar)
-        
-        
-    }
-    
-    func configureLayout() {
-        searchBar.snp.makeConstraints { make in
-            make.top.trailing.leading.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(44)
-        }
-        
-        collectionView.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
-            make.top.equalTo(searchBar.snp.bottom)
-        }
-    }
-    
-    func configureUI() {
-        view.backgroundColor = .white
-    }
-    
     func navigationUI() {
         navigationItem.title = "영화 검색"
     }
     
-    func callRequset(query: String) {
-        let url = APIURL.TMDBMovieURL
-        let params = [
-            "query" : query,
-            "language" : "ko",
-            "page" : page
-        ] as [String : Any]
-        let header: HTTPHeaders = ["Authorization": APIKey.TMDBAuthorization]
-        AF.request(url, parameters: params, headers: header).responseDecodable(of: Movie.self) { response in
-            switch response.result{
-            case .success(let value):
-                if self.page == 1{
-                    self.list = value
+    func callRequest(query: String) {
+        let group = DispatchGroup()
+        
+        group.enter()
+        DispatchQueue.global().async(group: group) {
+            
+            TMDBManager.shared.trendingFetch(api: .searchMoive(query: query, page: self.page), model: Movie.self) { movie, error in
+                if let error = error {
+                    self.view.makeToast(error.localizedDescription)
                 } else {
-                    self.list.results.append(contentsOf: value.results)
+                    guard let movie = movie else {return}
+                    if self.page == 1{
+                        self.list = movie
+                    } else {
+                        self.list.results.append(contentsOf: movie.results)
+                    }
+                    self.collectionView.reloadData()
+                    
+                    if self.page == 1 && !self.list.results.isEmpty {
+                        self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                    }
                 }
-                self.collectionView.reloadData()
-                
-                if self.page == 1 && !self.list.results.isEmpty {
-                    self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-                }
-            case .failure(let error):
-                self.view.makeToast(error.localizedDescription)
             }
+            
+            group.leave()
+            
+        }
+        
+        group.notify(queue: .main) {
+            self.collectionView.reloadData()
         }
     }
     
@@ -131,16 +130,16 @@ extension MovieViewController: UICollectionViewDelegate, UICollectionViewDataSou
 extension MovieViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         page = 1
-        callRequset(query: searchBar.text!)
+        callRequest(query: searchBar.text!)
     }
 }
 
 extension MovieViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         for item in indexPaths {
-            if list.results.count - 10 == item.item && list.page < list.total_pages{
+            if list.results.count - 10 == item.item && page < list.total_pages{
                 page += 1
-                callRequset(query: searchBar.text!)
+                callRequest(query: searchBar.text!)
             }
         }
     }

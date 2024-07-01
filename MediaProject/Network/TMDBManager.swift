@@ -14,6 +14,7 @@ class TMDBManager {
     private init() {}
     
     func trendingFetch<T: Decodable>(api: TMDBRequest, model: T.Type, completionHandler: @escaping (T?, TMDBError?) -> Void) {
+        print("aa:\(api.endpoint)")
         AF.request(api.endpoint, method: api.method,
                    parameters: api.parameter,
                    encoding: URLEncoding(destination: .queryString),

@@ -12,7 +12,7 @@ struct Movie: Decodable {
     let page: Int
     var results: [MovieData]
     let total_pages: Int
-
+    let total_results: Int
 }
 
 struct MovieData: Decodable {

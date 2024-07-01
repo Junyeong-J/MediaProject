@@ -134,7 +134,6 @@ extension DetailViewController {
         guard let listData = listData else {return}
         let vc = RecommendMovieViewController()
         vc.id = listData.id
-//        vc.naviTitle = listData.title!
         navigationController?.pushViewController(vc, animated: true)
     }
     
